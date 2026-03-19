@@ -4,6 +4,23 @@
   <title>Mi App</title>
 </head>
 <body>
-  <h1>GitHub Pages funcionando</h1>
+  <h1>Mi aplicación</h1>
+
+  <button onclick="cargarDatos()">Cargar datos</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    function cargarDatos() {
+      fetch("https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbwqwGv5N0RLboB_ark4O5F_c4IXMJRvg6QiRWTeeW_O9KCK_X7yEDN4ZQ9dvLWGmylOBg/exec/exec")
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("resultado").innerText = data.mensaje;
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
+  </script>
 </body>
 </html>
