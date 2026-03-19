@@ -12,14 +12,13 @@
 
   <script>
     function cargarDatos() {
-      fetch("https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbwqwGv5N0RLboB_ark4O5F_c4IXMJRvg6QiRWTeeW_O9KCK_X7yEDN4ZQ9dvLWGmylOBg/exec")
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById("resultado").innerText = data.mensaje;
-        })
-        .catch(err => {
-          console.error(err);
-        });
+      const script = document.createElement("script");
+      script.src = "https://script.google.com/macros/s/AKfycbzYcswqtMbIOScIdCt22j973M95L_1nSRJOurnZbifbVu4GLpas13tr3PTs_ccjSJPdmg/exec?callback=mostrarDatos";
+      document.body.appendChild(script);
+    }
+
+    function mostrarDatos(data) {
+      document.getElementById("resultado").innerText = data.mensaje;
     }
   </script>
 </body>
