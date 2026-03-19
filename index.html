@@ -7,7 +7,7 @@
 
 <h2>Consulta por DNI</h2>
 
-<input type="text" id="dni" placeholder="Ingrese su DNI"><br><br>
+<input type="text" id="dni" placeholder="Ingrese su DNI" maxlength="8"><br><br>
 
 <button onclick="consultar()">Consultar</button>
 
@@ -15,12 +15,19 @@
 
 <script>
 function consultar() {
-  const dni = document.getElementById("dni").value;
+  const dni = document.getElementById("dni").value.trim();
+
+  // 🔒 Validación frontend
+  if (!/^\d{8}$/.test(dni)) {
+    document.getElementById("resultado").innerText =
+      "El DNI debe tener exactamente 8 números";
+    return;
+  }
 
   const script = document.createElement("script");
 
   const url = "https://script.google.com/macros/s/AKfycbxB-D7iZTG6WatqTCKzYbPhVSh5rEj5-Tf7gUV8eElmv_mSQ4MP8CRoIauTC20ppnbWSw/exec"
-    + "?action=buscar"
+    + "?action=validar"
     + "&dni=" + encodeURIComponent(dni)
     + "&callback=respuesta"
     + "&t=" + new Date().getTime();
