@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Registro</title>
+  <title>Consulta de Inscripción</title>
 </head>
 <body>
 
-<h2>Registro</h2>
+<h2>Consulta por DNI</h2>
 
-<input type="text" id="nombre" placeholder="Nombre"><br><br>
-<input type="email" id="correo" placeholder="Correo"><br><br>
+<input type="text" id="dni" placeholder="Ingrese su DNI"><br><br>
 
-<button onclick="enviar()">Guardar</button>
+<button onclick="consultar()">Consultar</button>
 
 <p id="resultado"></p>
 
 <script>
-function enviar() {
-  const nombre = document.getElementById("nombre").value;
-  const correo = document.getElementById("correo").value;
+function consultar() {
+  const dni = document.getElementById("dni").value;
 
   const script = document.createElement("script");
 
   const url = "https://script.google.com/macros/s/AKfycbxB-D7iZTG6WatqTCKzYbPhVSh5rEj5-Tf7gUV8eElmv_mSQ4MP8CRoIauTC20ppnbWSw/exec"
-    + "?action=guardar"
-    + "&nombre=" + encodeURIComponent(nombre)
-    + "&correo=" + encodeURIComponent(correo)
+    + "?action=buscar"
+    + "&dni=" + encodeURIComponent(dni)
     + "&callback=respuesta"
     + "&t=" + new Date().getTime();
 
