@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mi App</title>
+  <title>Registro</title>
 </head>
 <body>
-  <h1>Mi aplicación</h1>
 
-  <button onclick="cargarDatos()">Cargar datos</button>
+<h2>Registro</h2>
 
-  <div id="resultado"></div>
+<input type="text" id="nombre" placeholder="Nombre"><br><br>
+<input type="email" id="correo" placeholder="Correo"><br><br>
 
-  <script>
-    function cargarDatos() {
-      const script = document.createElement("script");
-      script.src = "https://script.google.com/macros/s/AKfycbxB-D7iZTG6WatqTCKzYbPhVSh5rEj5-Tf7gUV8eElmv_mSQ4MP8CRoIauTC20ppnbWSw/exec?callback=mostrarDatos";
-      document.body.appendChild(script);
-    }
+<button onclick="enviar()">Guardar</button>
 
-    function mostrarDatos(data) {
-      document.getElementById("resultado").innerText = data.mensaje;
-    }
-  </script>
+<p id="resultado"></p>
+
+<script>
+function enviar() {
+  const nombre = document.getElementById("nombre").value;
+  const correo = document.getElementById("correo").value;
+
+  const script = document.createElement("script");
+
+  const url = "https://script.google.com/macros/s/AKfycbxB-D7iZTG6WatqTCKzYbPhVSh5rEj5-Tf7gUV8eElmv_mSQ4MP8CRoIauTC20ppnbWSw/exec"
+    + "?action=guardar"
+    + "&nombre=" + encodeURIComponent(nombre)
+    + "&correo=" + encodeURIComponent(correo)
+    + "&callback=respuesta"
+    + "&t=" + new Date().getTime();
+
+  script.src = url;
+  document.body.appendChild(script);
+}
+
+function respuesta(data) {
+  document.getElementById("resultado").innerText = data.mensaje;
+}
+</script>
+
 </body>
 </html>
